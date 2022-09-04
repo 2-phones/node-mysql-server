@@ -48,7 +48,7 @@ app.post('/Postboard',(req,res) => {
 })
 
 // 게시글 조회요청
-app.get('/Postboard',(req,res) => {
+app.get('/postdetail',(req,res) => {
     const useradd = `select * from posts;`
     connection.query(useradd,(error,rows) =>{
         error ? res.status(404).send(error)
