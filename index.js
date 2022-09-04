@@ -25,12 +25,35 @@ app.get('/users',(req,res) => {
   
 })
 
+/// 회원가입 요청
 app.post('/users', (req,res) => {
     console.log(req.body);
     const { name,email,pw } = req.body;
-    const useradd = `Insert into userlist (Name,Email,Password) values(${name},${email},password(${pw}));`;
-   connection.query(useradd);
-    res.status(200).send('가입완료!');
+    const useradd = `Insert into userlist (Name,Email,Password) values(${name},${email},${pw});`;
+    connection.query(useradd,(error,rows) =>{
+        error ? res.status(404).send(error)
+        : res.status(200).send('가입완료!');
+    });
+   
+})
+
+// 게시글 등록요청
+app.post('/Postboard',(req,res) => {
+    const{name , title, body} = req.body;
+    const useradd = `Insert into posts values('${name}','${title}','${body}');`;
+    connection.query(useradd,(error,rows) =>{
+        error ? res.status(404).send(error)
+        : res.status(200).send('게시글 등록 완료!');
+    });
+})
+
+// 게시글 조회요청
+app.get('/Postboard',(req,res) => {
+    const useradd = `select * from posts;`
+    connection.query(useradd,(error,rows) =>{
+        error ? res.status(404).send(error)
+        : res.status(200).send(rows);
+    });
 })
 
 const server = app.listen(8080, () => {
