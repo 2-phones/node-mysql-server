@@ -15,18 +15,19 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/users',(req,res) => { 
-
-    connection.query('SELECT * from topic', (error, rows, fields) => {
-    if (error) throw error;
-    console.log('User info is: ', rows);
-    res.send(rows);
+//로그인 
+app.post('/login',(req,res) => { 
+    const { email , password } = req.body;
+    connection.query(`SELECT * from userlist where Email = '${email}' and Password = ${password}`, (error, rows, fields) => {
+        if(error) throw error;
+        !rows.length ? res.status(401).send('아이디틀림')
+        : res.status(201).send('본인맞음');
   });
   
 })
 
 /// 회원가입 요청
-app.post('/users', (req,res) => {
+app.post('/SignUp', (req,res) => {
     console.log(req.body);
     const { name,email,pw } = req.body;
     const useradd = `Insert into userlist (Name,Email,Password) values(${name},${email},${pw});`;
@@ -38,21 +39,24 @@ app.post('/users', (req,res) => {
 })
 
 // 게시글 등록요청
-app.post('/Postboard',(req,res) => {
+app.post('/postboard',(req,res) => {
     const{name , title, body} = req.body;
-    const useradd = `Insert into posts values('${name}','${title}','${body}');`;
-    connection.query(useradd,(error,rows) =>{
+    console.log(req.body);
+    const useradd = `Insert into posts values('${name}',${title},${body});`;
+    connection.query(useradd,(error,result) =>{
         error ? res.status(404).send(error)
         : res.status(200).send('게시글 등록 완료!');
+
     });
 })
 
 // 게시글 조회요청
-app.get('/postdetail',(req,res) => {
+app.get('/posts',(req,res) => {
     const useradd = `select * from posts;`
-    connection.query(useradd,(error,rows) =>{
-        error ? res.status(404).send(error)
-        : res.status(200).send(rows);
+    connection.query(useradd,(error,result) =>{
+        if(error) throw error;
+        console.log(result);
+        res.status(201).send(result);
     });
 })
 
