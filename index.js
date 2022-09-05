@@ -58,3 +58,7 @@ app.get('/posts',(req,res) => {
         res.status(201).send(result);
     });
 })
+
+const server = app.listen(8080, () => {
+    console.log('Running at 8080');
+});
