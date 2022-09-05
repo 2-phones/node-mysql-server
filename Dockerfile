@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 8080
 
 # CMD [ "node", "server.js" ]: 서버를 실행한다.
-CMD ["node","index.js"]
+CMD ["npm","start"]
