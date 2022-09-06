@@ -4,7 +4,7 @@ import { connection,} from './database.js';
 
 
 const app = express();
-const PORT = 8080;
+const PORT = 80;
 
 app.use(cors());
 app.use(express.json({strict:false}));
@@ -59,6 +59,6 @@ app.get('/posts',(req,res) => {
     });
 })
 
-const server = app.listen(8080, () => {
-    console.log('Running at 8080');
+const server = app.listen(PORT, () => {
+    console.log(`서버 정상적으로 열렷음 포트번호 : ${PORT}`);
 });
