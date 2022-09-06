@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json({strict:false}));
 
 app.get('/', (req, res) => {
-    res.send('Hello world!');
+    res.send('🏝 ⛱  Hello world! 💙');
 });
 
 
@@ -41,11 +41,10 @@ app.post('/SignUp', (req,res) => {
 app.post('/postboard',(req,res) => {
     const{name , title, body} = req.body;
     console.log(req.body);
-    const useradd = `Insert into posts values(${title},${body});`;
+    const useradd = `Insert into posts (Title,Body) values('${title}','${body}');`;
     connection.query(useradd,(error,result) =>{
         error ? res.status(404).send(error)
         : res.status(200).send('게시글 등록 완료!');
-
     });
 })
 
