@@ -6,9 +6,8 @@ import http from "http";
 
 
 const app = express();
-const PORT = process.env.PORT || 8080;
-const socketSever = http.createServer(app).listen(PORT,  () => {
-    console.log(`서버 정상적으로 열렷음 포트번호 : ${PORT}`);
+const socketSever = http.createServer(app).listen(process.env.PORT || 8080,  () => {
+    console.log(`서버 정상적으로 열렷음 `);
 });
 
 const socket = new Server( socketSever ,{
