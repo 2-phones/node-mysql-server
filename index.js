@@ -37,6 +37,16 @@ app.post('/signup', (req,res) => {
    
 })
 
+/// 회원가입 조회
+app.post('/signup', (req,res) => {
+    const useradd = `select * from userlist`;
+    connection.query(useradd,(error,result) =>{
+        if(error) throw error;
+        res.status(201).send(result);
+    });
+   
+})
+
 // 게시글 등록요청
 app.post('/postboard',(req,res) => {
     const{name , title, body} = req.body;
@@ -53,7 +63,6 @@ app.get('/posts',(req,res) => {
     const useradd = `select * from posts;`
     connection.query(useradd,(error,result) =>{
         if(error) throw error;
-        console.log(result);
         res.status(201).send(result);
     });
 })
