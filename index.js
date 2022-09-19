@@ -4,7 +4,7 @@ import { connection,} from './database.js';
 
 
 const app = express();
-const PORT = 80;
+const PORT = process.env.PORT || 80;
 
 app.use(cors());
 app.use(express.json({strict:false}));
