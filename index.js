@@ -3,11 +3,9 @@ import cors from "cors";
 import {Server} from "socket.io";
 import http from "http";
 
-
-
 const app = express();
 const PORT = process.env.PORT || 8080;
-const socketSever = http.createServer().listen(PORT,  () => {
+const socketSever = http.createServer(app).listen(PORT,  () => {
     console.log(`서버 정상적으로 열렷음 `);
 });
 
