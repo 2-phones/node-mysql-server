@@ -38,7 +38,7 @@ app.post('/signup', (req,res) => {
 })
 
 /// 회원가입 조회
-app.post('/signup', (req,res) => {
+app.get('/signup', (req,res) => {
     const useradd = `select * from userlist`;
     connection.query(useradd,(error,result) =>{
         if(error) throw error;
