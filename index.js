@@ -18,7 +18,6 @@ const socket = new Server( socketSever ,{
 });
 
 app.use(cors());
-app.use(express.json({strict:false}));
 
 app.get('/' , (req,res) => {
     res.send('서버 열렸음요!!!');
