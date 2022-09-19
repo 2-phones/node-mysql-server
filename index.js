@@ -29,7 +29,7 @@ app.post('/login',(req,res) => {
 app.post('/signup', (req,res) => {
     console.log(req.body);
     const { id,email,pw } = req.body;
-    const useradd = `Insert into userlist (Name,Email,Password) values(${id},${email},${pw});`;
+    const useradd = `Insert into userlist (Name,Email,Password) values('${id}','${email}',${pw});`;
     connection.query(useradd,(error,rows) =>{
         error ? res.status(404).send('중복된 아이디 입니다!')
         : res.status(200).send('가입완료!');
