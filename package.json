@@ -2,12 +2,12 @@
   "name": "pre_project_server",
   "version": "1.0.0",
   "description": "Deploy express app to vercel",
-  "main": "index.js",
+  "main": "chat.js",
   "engines": {
     "node": "16.x"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon chat.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
